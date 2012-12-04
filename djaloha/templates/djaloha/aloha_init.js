@@ -11,6 +11,9 @@
 		floatingmenu: {
 			"behaviour" : "float"
 		},
+		sidebar: {
+			disabled: {{sidebar_disabled}}
+		},
         repositories: {
             linklist: {
 		    	data: [{% for link in links %}

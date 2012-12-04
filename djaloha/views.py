@@ -12,6 +12,7 @@ def aloha_init(request):
     
     links = []
     link_models = getattr(settings, 'DJALOHA_LINK_MODELS', ())
+    sidebar_disabled = getattr(settings, 'DJALOHA_SIDEBAR_DISABLED', True)
     for full_model_name in link_models:
         app_name, model_name = full_model_name.split('.')
         model = get_model(app_name, model_name)
@@ -20,6 +21,9 @@ def aloha_init(request):
     
     return render_to_response(
         'djaloha/aloha_init.js',
-        {'links': links},
+        {
+            'links': links,
+            'sidebar_disabled': 'true' if sidebar_disabled else 'false',
+        },
         context_instance=RequestContext(request)
     )
