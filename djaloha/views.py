@@ -18,12 +18,20 @@ def aloha_init(request):
         model = get_model(app_name, model_name)
         if model:
             links.extend(model.objects.all())
-    
+    aloha_version = getattr(settings, 'DJALOHA_ALOHA_VERSION', "aloha.0.20.20")
+    template_name = 'djaloha/aloha_{0}_init.js'.format(aloha_version)
+
+    jquery_no_conflict = getattr(settings, 'DJALOHA_JQUERY_NO_CONFLICT', False)
+
     return render_to_response(
-        'djaloha/aloha_init.js',
+        template_name,
         {
             'links': links,
-            'sidebar_disabled': 'true' if sidebar_disabled else 'false',
+            'config':{
+                'jquery_no_conflict': jquery_no_conflict,
+                'sidebar_disabled': 'true' if sidebar_disabled else 'false',
+            },
         },
+        mimetype='text/javascript',
         context_instance=RequestContext(request)
     )

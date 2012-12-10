@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from floppyforms.widgets import TextInput
-from django.utils.encoding import force_unicode
 from django.forms import Media
 from django.core.urlresolvers import reverse
 from django.conf import settings
+
 
 class AlohaInput(TextInput):
     """
@@ -12,7 +12,7 @@ class AlohaInput(TextInput):
     requires floppyforms to be installed
     """
 
-    template_name='djaloha/alohainput.html'
+    template_name = 'djaloha/alohainput.html'
 
     def __init__(self, *args, **kwargs):
         kwargs.pop('text_color_plugin', None) # for compatibility with previous versions
@@ -29,7 +29,6 @@ class AlohaInput(TextInput):
         """
 
         try:
-            custom_jquery = getattr(settings, 'DJALOHA_JQUERY', "js/jquery-1.7.2.js")
             aloha_init_url = self.aloha_init_url or getattr(settings, 'DJALOHA_INIT_URL', None) or reverse('aloha_init')
             aloha_version = getattr(settings, 'DJALOHA_ALOHA_VERSION', "aloha.0.20.20")
 
@@ -63,12 +62,22 @@ class AlohaInput(TextInput):
                 )
             }
 
-            js = (
-                custom_jquery,
-                # Yes I know this is very dirty but the better (less bad) solution so-far
-                u'{0}/lib/aloha.js" data-aloha-plugins="{1}'.format(aloha_version, u",".join(aloha_plugins)),
-                aloha_init_url,
-            )
+            js = []
+
+            skip_jquery = getattr(settings, 'SKIP_DJALOHA_JQUERY', False)
+            if not skip_jquery:
+                if settings.DEBUG:
+                    js.append(getattr(settings, 'DJALOHA_JQUERY', "js/jquery-1.7.2.js"))
+                else:
+                    js.append(getattr(settings, 'DJALOHA_JQUERY', "js/jquery-1.7.2.min.js"))
+
+            if aloha_version.startswith('aloha.0.22.'):
+                js.append("{0}/lib/require.js".format(aloha_version))
+
+            js.append(aloha_init_url)
+            js.append(u'{0}/lib/aloha.js" data-aloha-plugins="{1}'.format(aloha_version, u",".join(aloha_plugins)))
+            js.append('djaloha/js/djaloha-init.js')
+
 
             return Media(css=css, js=js)
         except Exception, msg:
