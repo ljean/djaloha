@@ -26,10 +26,15 @@
 		plugins: {
 			format: {
 				// all elements with no specific configuration get this configuration
-				config: [  'b', 'i', 'u', 'del', 'p', 'sub', 'sup', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'pre', 'code', 'removeFormat' ],
+				config: [  'b', 'i', 'u', 'del', 'p', 'sub', 'sup', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'pre', 'removeFormat' ],
+				{% if config.css_classes %}
+				allowedClasses : [{% for cls in config.css_classes %}
+                    '{{ cls }}'{%if not forloop.last %},{%endif%}
+                {% endfor %}],
+				{% endif %}
                 editables: {
 					// no formatting allowed for title
-					'#top-text': []
+					'#top-text': ['title']
 				}
 			},
 			list: {

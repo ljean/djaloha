@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-from django.conf import settings
+
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.db.models import get_model
+from djaloha import settings
 
 def aloha_init(request):
     """
@@ -11,25 +12,20 @@ def aloha_init(request):
     """
     
     links = []
-    link_models = getattr(settings, 'DJALOHA_LINK_MODELS', ())
-    sidebar_disabled = getattr(settings, 'DJALOHA_SIDEBAR_DISABLED', True)
-    for full_model_name in link_models:
+    for full_model_name in settings.link_models():
         app_name, model_name = full_model_name.split('.')
         model = get_model(app_name, model_name)
         if model:
             links.extend(model.objects.all())
-    aloha_version = getattr(settings, 'DJALOHA_ALOHA_VERSION', "aloha.0.20.20")
-    template_name = 'djaloha/aloha_{0}_init.js'.format(aloha_version)
-
-    jquery_no_conflict = getattr(settings, 'DJALOHA_JQUERY_NO_CONFLICT', False)
 
     return render_to_response(
-        template_name,
+        settings.init_js_template(),
         {
             'links': links,
             'config':{
-                'jquery_no_conflict': jquery_no_conflict,
-                'sidebar_disabled': 'true' if sidebar_disabled else 'false',
+                'jquery_no_conflict': settings.jquery_no_conflict(),
+                'sidebar_disabled': 'true' if settings.sidebar_disabled() else 'false',
+                'css_classes': settings.css_classes(),
             },
         },
         mimetype='text/javascript',
