@@ -25,7 +25,7 @@ def plugins():
             "common/paste",
             "common/commands",
             "common/contenthandler",
-            #"common/image",
+            "common/image",
             #"custom/zimage",
             "common/align",
             #"extra/attributes",

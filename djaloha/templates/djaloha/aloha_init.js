@@ -114,6 +114,7 @@
 				'maxHeight'        : 600,
 				'minHeight'        : 20,
 				'globalselector'   : '.global',
+				'autoResize': false,
 				'ui': {
 					'oneTab' : false,
 				}
