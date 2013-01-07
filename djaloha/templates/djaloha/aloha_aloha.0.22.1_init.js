@@ -1,1 +1,0 @@
-{% extends "djaloha/aloha_init.js" %}

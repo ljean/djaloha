@@ -116,7 +116,7 @@
 				'globalselector'   : '.global',
 				'autoResize': false,
 				'ui': {
-					'oneTab' : false,
+					'crop' : false,
 				}
 			},
 			cite: {

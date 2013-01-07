@@ -22,8 +22,6 @@
         
         //$("#"+ed.getId()+"_hidden").val($.trim(ed.getContents()));
     });
-    
-    
 
     var resize_thumbnail = function (the_obj) {
 
