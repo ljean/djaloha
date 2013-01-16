@@ -56,3 +56,6 @@ def sidebar_disabled():
     
 def css_classes():
     return getattr(project_settings, 'DJALOHA_CSS_CLASSES', ())
+    
+def resize_disabled():
+    return getattr(project_settings, 'DJALOHA_RESIZE_DISABLED', False)

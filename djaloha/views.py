@@ -26,6 +26,7 @@ def aloha_init(request):
                 'jquery_no_conflict': settings.jquery_no_conflict(),
                 'sidebar_disabled': 'true' if settings.sidebar_disabled() else 'false',
                 'css_classes': settings.css_classes(),
+                'resize_disabled': settings.resize_disabled(),
             },
         },
         mimetype='text/javascript',

@@ -116,7 +116,8 @@
 				'globalselector'   : '.global',
 				'autoResize': false,
 				'ui': {
-					'crop' : false,
+					'resizable' : {% if resize_disabled %}false{% else %}true{% endif %},
+					'crop' : false
 				}
 			},
 			cite: {
