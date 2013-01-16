@@ -37,7 +37,7 @@ def plugins():
     return plugins
     
 def skip_jquery():
-    return getattr(project_settings, 'DJALOHA_SKIP_JQUERY', True)
+    return getattr(project_settings, 'DJALOHA_SKIP_JQUERY', False)
     
 def jquery_version():
     if project_settings.DEBUG:
@@ -46,7 +46,7 @@ def jquery_version():
         return getattr(project_settings, 'DJALOHA_JQUERY', "js/jquery-1.7.2.js")
     
 def jquery_no_conflict():
-    return getattr(project_settings, 'DJALOHA_JQUERY_NO_CONFLICT', False)
+    return getattr(project_settings, 'DJALOHA_JQUERY_NO_CONFLICT', True)
     
 def link_models():
     return getattr(project_settings, 'DJALOHA_LINK_MODELS', ())
