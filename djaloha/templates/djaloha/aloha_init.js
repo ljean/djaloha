@@ -23,6 +23,33 @@
                 {% endfor %}]
 			}
 		},
+		contentHandler: {
+			insertHtml: [ 'word', 'generic', 'oembed', 'sanitize' ],
+			initEditable: [ 'sanitize' ],
+			getContents: [ 'blockelement', 'sanitize', 'basic' ],
+			sanitize: 'relaxed', // relaxed, restricted, basic,
+			allows: {
+				elements: [
+					'strong', 'em', 'i', 'b', 'blockquote', 'br', 'cite', 'code', 'dd', 'div', 'dl', 'dt', 'em',
+					'i', 'li', 'ol', 'p', 'pre', 'q', 'small', 'strike', 'sub',
+					'sup', 'u', 'ul', 'iframe', 'img', 'table', 'tbody', 'tr', 'td'],
+		 
+				attributes: {
+					'a'         : ['href'],
+					'blockquote': ['cite'],
+					'q'         : ['cite'],
+					'p'			: ['style'],
+					'iframe'	: ['height', 'width', 'src', 'frameborder', 'allowfullscreen'],
+					'img'		: ['height', 'width', 'src', 'style']
+				},
+		 
+				protocols: {
+					'a'         : {'href': ['ftp', 'http', 'https', 'mailto', '__relative__']}, // Sanitize.RELATIVE
+					'blockquote': {'cite': ['http', 'https', '__relative__']},
+					'q'         : {'cite': ['http', 'https', '__relative__']}
+				}
+			}
+		},
 		plugins: {
 			format: {
 				// all elements with no specific configuration get this configuration
