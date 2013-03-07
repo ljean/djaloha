@@ -31,7 +31,7 @@
 			allows: {
 				elements: [
 					'strong', 'em', 'i', 'b', 'blockquote', 'br', 'cite', 'code', 'dd', 'div', 'dl', 'dt', 'em',
-					'i', 'li', 'ol', 'p', 'pre', 'q', 'small', 'strike', 'sub',
+					'a', 'li', 'ol', 'p', 'pre', 'q', 'small', 'strike', 'sub',
 					'sup', 'u', 'ul', 'iframe', 'img', 'table', 'tbody', 'tr', 'td'],
 		 
 				attributes: {
