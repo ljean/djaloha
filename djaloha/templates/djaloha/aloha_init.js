@@ -1,5 +1,4 @@
 {% load i18n djaloha_utils %}
-
 (function (window, undefined) {
 	var Aloha = window.Aloha || ( window.Aloha = {} );
 	Aloha.settings = {
@@ -31,9 +30,10 @@
 			allows: {
 				elements: [
 					'strong', 'em', 'i', 'b', 'blockquote', 'br', 'cite', 'code', 'dd', 'div', 'dl', 'dt', 'em',
-					'i', 'li', 'ol', 'p', 'pre', 'q', 'small', 'strike', 'sub',
-					'sup', 'u', 'ul', 'iframe', 'img', 'table', 'tbody', 'tr', 'td'],
-		 
+					'a', 'li', 'ol', 'p', 'pre', 'q', 'small', 'strike', 'sub',
+					'sup', 'u', 'ul', 'iframe', 'img', 'table', 'tbody', 'tr', 'td',
+					'h1', 'h2', 'h3', 'h4', 'h5', 'h6'
+				],
 				attributes: {
 					'a'         : ['href'],
 					'blockquote': ['cite'],
