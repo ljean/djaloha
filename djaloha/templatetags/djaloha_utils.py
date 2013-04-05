@@ -26,17 +26,32 @@ class DjalohaEditNode(template.Node):
     def __init__(self, model_class, lookup, field_name):
         super(DjalohaEditNode, self).__init__()
         self._model_class = model_class
-        self._lookup = lookup
+        self._lookup_args = lookup
+        self._lookup = {}
         self._field_name = field_name
     
     def render(self, context):
         #resolve context. keep string values as is
-        for (k, v) in self._lookup.items():
+        for (k, v) in self._lookup_args.items():
+            v = unicode(v)
             new_v = v.strip('"').strip("'")
             if len(v)-2 == len(new_v):
                 self._lookup[k] = new_v
             else:
-                self._lookup[k] = context[v]
+                #self._lookup[k] = context[v]
+                try:
+                    try:
+                        var_name, attr = new_v.strip('.')
+                    except:
+                        var_name, attr = new_v, None
+                    var = template.Variable(var_name).resolve(context)
+                    if attr:
+                        var_value = getattr(var, attr, '')
+                    else:
+                        var_value = var
+                    self._lookup[k] = var_value
+                except template.VariableDoesNotExist:
+                    self._lookup[k] = context[v]
         
         #get or create the object to edit
         self._object, _is_new = self._model_class.objects.get_or_create(**self._lookup)

@@ -35,7 +35,7 @@
 					'h1', 'h2', 'h3', 'h4', 'h5', 'h6'
 				],
 				attributes: {
-					'a'         : ['href'],
+					'a'         : ['href', 'target'],
 					'blockquote': ['cite'],
 					'q'         : ['cite'],
 					'p'			: ['style'],
@@ -45,6 +45,8 @@
 		 
 				protocols: {
 					'a'         : {'href': ['ftp', 'http', 'https', 'mailto', '__relative__']}, // Sanitize.RELATIVE
+					'iframe'    : {'src': ['ftp', 'http', 'https', '__relative__']}, // Sanitize.RELATIVE
+					'img'    	: {'src': ['ftp', 'http', 'https', '__relative__']}, // Sanitize.RELATIVE
 					'blockquote': {'cite': ['http', 'https', '__relative__']},
 					'q'         : {'cite': ['http', 'https', '__relative__']}
 				}

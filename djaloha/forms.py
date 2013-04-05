@@ -10,9 +10,9 @@ class DjalohaForm(forms.Form):
         self._model_class = model_class
         self._lookup = lookup
         self._field_name = field_name
-                
+        
         model_name = "__".join(
-            (model_class.__module__.split('.')[0], model_class.__name__)
+            (model_class.__module__.split('.')[-2], model_class.__name__)
         )
         
         lookup_str = "__".join([k+"__"+unicode(v).strip('"\'') for (k,v) in lookup.items()])
