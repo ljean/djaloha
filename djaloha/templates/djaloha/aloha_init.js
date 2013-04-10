@@ -32,7 +32,7 @@
 					'strong', 'em', 'i', 'b', 'blockquote', 'br', 'cite', 'code', 'dd', 'div', 'dl', 'dt', 'em',
 					'a', 'li', 'ol', 'p', 'pre', 'q', 'small', 'strike', 'sub',
 					'sup', 'u', 'ul', 'iframe', 'img', 'table', 'tbody', 'tr', 'td',
-					'h1', 'h2', 'h3', 'h4', 'h5', 'h6'
+					'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hr'
 				],
 				attributes: {
 					'a'         : ['href', 'target'],
