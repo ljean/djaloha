@@ -97,6 +97,8 @@ The ``extra_aloha_plugins`` attribute will add additional plugins to the default
 License
 =======
 
-Djaloha uses the same license as Django (BSD).
+apidev-djaloha is a fork from credis/djaloha (see http://github.com/credis/djaloha)
+
+Djaloha uses the BSD license. see license.txt
 
 Djaloha development was funded by `CREDIS <http://credis.org/>`_, FSE (European Social Fund) and Conseil Regional d'Auvergne.

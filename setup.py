@@ -10,12 +10,8 @@ except ImportError:
 
 VERSION = __import__('djaloha').__version__
 
-import os
-def read(fname):
-    return open(os.path.join(os.path.dirname(__file__), fname)).read()
-
 setup(
-    name='Djaloha',
+    name='apidev-djaloha',
     version = VERSION,
     description='Django integration for aloha HTML5 editor',
     packages=['djaloha','djaloha.templatetags'],
@@ -23,10 +19,9 @@ setup(
     author='Luc Jean',
     author_email='ljean@apidev.fr',
     license='BSD',
-    #long_description=read('README.txt'),
-    #download_url = "https://github.com/quinode/djaloha/tarball/%s" % (VERSION),
-    #download_url='git://github.com/quinode/djaloha.git',
+    long_description=open('README.rst').read(),
+    url = "https://github.com/ljean/djaloha/",
+    download_url = "https://github.com/ljean/djaloha/tarball/%s" % (VERSION),
     zip_safe=False,
     install_requires = ['django-floppyforms==0.4.7',]
 )
-
