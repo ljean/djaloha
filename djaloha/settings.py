@@ -4,7 +4,7 @@ from django.conf import settings as project_settings
 from django.core.urlresolvers import reverse
 
 def aloha_version():
-    return getattr(project_settings, 'DJALOHA_ALOHA_VERSION', "aloha.0.22.6")
+    return getattr(project_settings, 'DJALOHA_ALOHA_VERSION', "aloha.0.23.26")
     
 def init_js_template():
     return getattr(project_settings, 'DJALOHA_INIT_JS_TEMPLATE', "djaloha/aloha_init.js")
@@ -32,7 +32,9 @@ def plugins():
             "common/characterpicker",
             #"common/abbr",
             "common/horizontalruler",
-            "common/table",
+            #"common/table",
+            #"extra/metaview",
+            #"extra/textcolor",
         )
     return plugins
     

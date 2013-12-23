@@ -113,7 +113,7 @@
 					}
 				}*/
 			},
-			table: {
+			/*table: {
 				// all elements with no specific configuration are not allowed to insert tables
 				config: [ 'table' ],
 				editables: {
@@ -135,6 +135,40 @@
 					{ name: 'table-style-bigbold',  iconClass: 'aloha-button-row-bigbold' },
 					{ name: 'table-style-redwhite', iconClass: 'aloha-button-row-redwhite' }
 				]
+			},*/
+			table: {
+				// all elements with no specific configuration are not allowed to insert tables
+				config : [ 'table' ],
+				
+				// the table summary is editable in the sidebar
+				summaryinsidebar : true,
+				// the following settings allow the user to apply specific classes to
+				// either the whole table or a column or row. The name is used as a
+				// class attribute, while the iconClass is applied as a class attribute
+				// to style the buttons
+				tableConfig : [
+					{ name:'hor-minimalist-a' },
+					{ name:'box-table-a' },
+					{ name:'hor-zebra' },
+				],
+				columnConfig : [
+						{ name: 'table-style-bigbold',  iconClass: 'aloha-button-col-bigbold' },
+						{ name: 'table-style-redwhite', iconClass: 'aloha-button-col-redwhite' }
+				],
+				rowConfig : [
+						{ name: 'table-style-bigbold',  iconClass: 'aloha-button-row-bigbold' },
+						{ name: 'table-style-redwhite', iconClass: 'aloha-button-row-redwhite' }
+				],
+				cellConfig : [
+						{ name: 'table-style-bigbold',  iconClass: 'aloha-button-row-bigbold' },
+						{ name: 'table-style-redwhite', iconClass: 'aloha-button-row-redwhite' }
+				],
+				// allow resizing the table width (default: true)
+				tableResize: true,
+				// allow resizing the column width (default: true)
+				colResize: true,
+				// allow resizing the row height (default: true)
+				rowResize: true
 			},
             image: {
 				'fixedAspectRatio' : false,
