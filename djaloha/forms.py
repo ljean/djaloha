@@ -32,9 +32,9 @@ class DjalohaForm(forms.Form):
     
     def save(self):
         v = smart_unicode(self.cleaned_data[self._form_field])
-        object, _is_new = self._model_class.objects.get_or_create(**self._lookup)
-        setattr(object, self._field_name, v)
-        object.save()
+        obj, _is_new = self._model_class.objects.get_or_create(**self._lookup)
+        setattr(obj, self._field_name, v)
+        obj.save()
     
     def as_is(self):
         return self._html_output(
