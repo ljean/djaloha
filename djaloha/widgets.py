@@ -48,8 +48,8 @@ class AlohaInput(TextInput):
             if not settings.skip_jquery():
                 js.append(settings.jquery_version())
 
-            if aloha_version.startswith('aloha.0.22.') or aloha_version.startswith('aloha.0.23.'):
-                js.append("{0}/lib/require.js".format(aloha_version))
+            #if aloha_version.startswith('aloha.0.22.') or aloha_version.startswith('aloha.0.23.'):
+            js.append("{0}/lib/require.js".format(aloha_version))
 
             js.append(aloha_init_url)
             js.append(u'{0}/lib/aloha.js" data-aloha-plugins="{1}'.format(aloha_version, u",".join(aloha_plugins)))
