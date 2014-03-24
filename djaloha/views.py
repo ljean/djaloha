@@ -29,6 +29,6 @@ def aloha_init(request):
                 'resize_disabled': settings.resize_disabled(),
             },
         },
-        mimetype='text/javascript',
+        content_type='text/javascript',
         context_instance=RequestContext(request)
     )
