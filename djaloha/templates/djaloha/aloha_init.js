@@ -44,7 +44,7 @@
 				},
 		 
 				protocols: {
-					'a'         : {'href': ['ftp', 'http', 'https', 'mailto', '__relative__']}, // Sanitize.RELATIVE
+					'a'         : {'href': ['ftp', 'http', 'https', 'mailto', '__relative__', 'courrier']}, // Sanitize.RELATIVE
 					'iframe'    : {'src': ['ftp', 'http', 'https', '__relative__']}, // Sanitize.RELATIVE
 					'img'    	: {'src': ['ftp', 'http', 'https', '__relative__']}, // Sanitize.RELATIVE
 					'blockquote': {'cite': ['http', 'https', '__relative__']},
