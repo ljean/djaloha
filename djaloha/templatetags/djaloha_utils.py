@@ -23,12 +23,13 @@ def remove_br(value):
 
 class DjalohaEditNode(template.Node):
     
-    def __init__(self, model_class, lookup, field_name):
+    def __init__(self, model_class, lookup, field_name, read_only=False):
         super(DjalohaEditNode, self).__init__()
         self._model_class = model_class
         self._lookup_args = lookup
         self._lookup = {}
         self._field_name = field_name
+        self.read_only = read_only
         
     def _get_form_class(self):
         return DjalohaForm
@@ -57,7 +58,7 @@ class DjalohaEditNode(template.Node):
                     
     def _render_value(self, context, obj_lookup, value):
         #if edit mode : activate aloha form
-        if context.get('djaloha_edit'):
+        if (not self.read_only) and context.get('djaloha_edit'):
             form_class = self._get_form_class()
             form = form_class(self._model_class, obj_lookup, self._field_name, field_value=value)
             return form.as_is()
