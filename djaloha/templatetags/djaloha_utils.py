@@ -23,13 +23,13 @@ def remove_br(value):
 
 class DjalohaEditNode(template.Node):
     
-    def __init__(self, model_class, lookup, field_name, read_only=False):
+    def __init__(self, model_class, lookup, field_name, *args, **kwargs):
         super(DjalohaEditNode, self).__init__()
         self._model_class = model_class
         self._lookup_args = lookup
         self._lookup = {}
         self._field_name = field_name
-        self.read_only = read_only
+        self.read_only = args[0] if args else kwargs.get('read_only', False)
         
     def _get_form_class(self):
         return DjalohaForm
