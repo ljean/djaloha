@@ -34,27 +34,30 @@ class DjalohaEditNode(template.Node):
     def _get_form_class(self):
         return DjalohaForm
     
+    def _resolve_arg(self, v, context):
+        v = unicode(v)
+        new_v = v.strip('"').strip("'")
+        if len(v)-2 == len(new_v):
+            return new_v
+        else:
+            try:
+                try:
+                    var_name, attr = new_v.strip('.')
+                except:
+                    var_name, attr = new_v, None
+                var = template.Variable(var_name).resolve(context)
+                if attr:
+                    var_value = getattr(var, attr, '')
+                else:
+                    var_value = var
+                return var_value
+            except template.VariableDoesNotExist:
+                return v
+    
     def _resolve_lookup(self, lookup, context):
         #resolve context. keep string values as is
         for (k, v) in self._lookup_args.items():
-            v = unicode(v)
-            new_v = v.strip('"').strip("'")
-            if len(v)-2 == len(new_v):
-                lookup[k] = new_v
-            else:
-                try:
-                    try:
-                        var_name, attr = new_v.strip('.')
-                    except:
-                        var_name, attr = new_v, None
-                    var = template.Variable(var_name).resolve(context)
-                    if attr:
-                        var_value = getattr(var, attr, '')
-                    else:
-                        var_value = var
-                    lookup[k] = var_value
-                except template.VariableDoesNotExist:
-                    lookup[k] = context[v]
+            lookup[k] = self._resolve_arg(v, context)
                     
     def _render_value(self, context, obj_lookup, value):
         #if edit mode : activate aloha form
@@ -89,18 +92,20 @@ class DjalohaMultipleEditNode(DjalohaEditNode):
     def _post_object_render(self, obj):
         return ""
     
+    def _object_render(self, idx, obj, context):
+        value = getattr(obj, self._field_name)
+        object_content = self._pre_object_render(obj)
+        object_content += self._render_value(context, self._get_object_lookup(obj), value)
+        object_content += self._post_object_render(obj)
+        return object_content
+    
     def render(self, context):
         self._resolve_lookup(self._lookup, context)
-        
         content = u""
-        for obj in self._get_objects(self._lookup):
-            value = getattr(obj, self._field_name)
-            content += self._pre_object_render(obj)
-            content += self._render_value(context, self._get_object_lookup(obj), value)
-            content += self._post_object_render(obj)
+        for (idx, obj) in enumerate(self._get_objects(self._lookup)):
+            content += self._object_render(idx, obj, context)
         return content
 
-            
 def get_djaloha_edit_args(parser, token):
     full_model_name = token.split_contents()[1]
     lookups = token.split_contents()[2].split(';')
