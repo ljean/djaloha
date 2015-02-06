@@ -12,16 +12,16 @@ VERSION = __import__('djaloha').__version__
 
 setup(
     name='apidev-djaloha',
-    version = VERSION,
+    version=VERSION,
     description='Django integration for aloha HTML5 editor',
-    packages=['djaloha','djaloha.templatetags'],
+    packages=['djaloha', 'djaloha.templatetags'],
     include_package_data=True,
     author='Luc Jean',
     author_email='ljean@apidev.fr',
     license='BSD',
     long_description=open('README.rst').read(),
-    url = "https://github.com/ljean/djaloha/",
-    download_url = "https://github.com/ljean/djaloha/tarball/%s" % (VERSION),
+    url="https://github.com/ljean/djaloha/",
+    download_url="https://github.com/ljean/djaloha/tarball/%s" % VERSION,
     zip_safe=False,
-    install_requires = ['django-floppyforms',]
+    install_requires=['django-floppyforms', ]
 )
