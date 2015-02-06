@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
+"""view for aloha editor"""
 
+from django.db.models import get_model
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from django.db.models import get_model
+
 from djaloha import settings
+
 
 def aloha_init(request):
     """
@@ -22,7 +25,7 @@ def aloha_init(request):
         settings.init_js_template(),
         {
             'links': links,
-            'config':{
+            'config': {
                 'jquery_no_conflict': settings.jquery_no_conflict(),
                 'sidebar_disabled': 'true' if settings.sidebar_disabled() else 'false',
                 'css_classes': settings.css_classes(),

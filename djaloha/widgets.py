@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
+"""widgets to be used in a form"""
+
+from django.forms import Media
 
 from floppyforms.widgets import TextInput
-from django.forms import Media
-from django.core.urlresolvers import reverse
+
 from djaloha import settings
+
 
 class AlohaInput(TextInput):
     """
@@ -14,7 +17,9 @@ class AlohaInput(TextInput):
     template_name = 'djaloha/alohainput.html'
 
     def __init__(self, *args, **kwargs):
-        kwargs.pop('text_color_plugin', None) # for compatibility with previous versions
+        # for compatibility with previous versions
+        kwargs.pop('text_color_plugin', None)
+
         self.aloha_plugins = kwargs.pop('aloha_plugins', None)
         self.extra_aloha_plugins = kwargs.pop('extra_aloha_plugins', None)
         self.aloha_init_url = kwargs.pop('aloha_init_url', None)
@@ -33,7 +38,7 @@ class AlohaInput(TextInput):
             aloha_plugins = self.aloha_plugins
             if not aloha_plugins:
                 aloha_plugins = settings.plugins()
-            
+
             if self.extra_aloha_plugins:
                 aloha_plugins = tuple(aloha_plugins) + tuple(self.extra_aloha_plugins)
 
@@ -43,19 +48,21 @@ class AlohaInput(TextInput):
                 )
             }
 
-            js = []
+            javascripts = []
 
             if not settings.skip_jquery():
-                js.append(settings.jquery_version())
+                javascripts.append(settings.jquery_version())
 
             #if aloha_version.startswith('aloha.0.22.') or aloha_version.startswith('aloha.0.23.'):
-            js.append("{0}/lib/require.js".format(aloha_version))
+            javascripts.append("{0}/lib/require.js".format(aloha_version))
 
-            js.append(aloha_init_url)
-            js.append(u'{0}/lib/aloha.js" data-aloha-plugins="{1}'.format(aloha_version, u",".join(aloha_plugins)))
-            js.append('djaloha/js/djaloha-init.js')
+            javascripts.append(aloha_init_url)
+            javascripts.append(
+                u'{0}/lib/aloha.js" data-aloha-plugins="{1}'.format(aloha_version, u",".join(aloha_plugins))
+            )
+            javascripts.append('djaloha/js/djaloha-init.js')
             
-            return Media(css=css, js=js)
+            return Media(css=css, js=javascripts)
         except Exception, msg:
             print '## AlohaInput._get_media Error ', msg
 
