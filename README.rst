@@ -1,6 +1,5 @@
 Djaloha
 ===============================================
-.. image:: https://secure.travis-ci.org/dmpinheiro/djaloha.png?branch=master
 
 * `What is djaloha good for?`_
 * `Quick start`_
@@ -17,14 +16,14 @@ What is djaloha good for?
 Djaloha (django + aloha) is a backend for using the `Aloha Editor <http://aloha-editor.org/>`_ into a Django site.
 It enables inline editing for your HTML content.
 It includes a django Form and a Widget helper.
-Djaloha is using aloha.0.20
+Djaloha is using aloha.0.23.26
 
 .. _quick-start:
 
 Quick start
 ------------------------------------
 In settings.py, add 'djaloha' to the INSTALLED_APPS 
-Under Django 1.3+, the static folder should be found automatically, as the templates folder.
+Under Django 1.6, the static folder should be found automatically, as the templates folder.
 In urls.py add ``(r'^djaloha/', include('djaloha.urls'))`` to your urlpatterns
 
 Then create a form. For example something like ::
