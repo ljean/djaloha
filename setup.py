@@ -23,5 +23,5 @@ setup(
     url="https://github.com/ljean/djaloha/",
     download_url="https://github.com/ljean/djaloha/tarball/%s" % VERSION,
     zip_safe=False,
-    install_requires=['django-floppyforms', ]
+    install_requires=['django-floppyforms==1.3.0', ]
 )
