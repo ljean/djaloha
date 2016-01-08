@@ -1,7 +1,13 @@
 # -*- coding: utf-8 -*-
 """utilities"""
 
-from django.db.models import get_model
+from django import VERSION
+
+if VERSION >= (1, 9, 0):
+    from django.apps import apps
+    get_model = apps.get_model
+else:
+    from django.db.models import get_model
 
 from djaloha.forms import DjalohaForm
 

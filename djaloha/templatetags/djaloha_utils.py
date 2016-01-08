@@ -2,9 +2,9 @@
 """template tags"""
 
 from django import template
-from django.db.models import get_model
 
 from djaloha.forms import DjalohaForm
+from djaloha.utils import get_model
 
 
 register = template.Library()

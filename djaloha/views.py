@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 """view for aloha editor"""
 
-from django.db.models import get_model
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
 from djaloha import settings
+from djaloha.utils import get_model
 
 
 def aloha_init(request):
