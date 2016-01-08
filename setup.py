@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 try:
@@ -21,7 +20,7 @@ setup(
     license='BSD',
     long_description=open('README.rst').read(),
     url="https://github.com/ljean/djaloha/",
-    download_url="https://github.com/ljean/djaloha/tarball/%s" % VERSION,
+    download_url="https://github.com/ljean/djaloha/tarball/master",
     zip_safe=False,
     install_requires=['django-floppyforms', ]
 )

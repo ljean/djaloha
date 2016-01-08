@@ -23,7 +23,6 @@ Djaloha is using aloha.0.23.26
 Quick start
 ------------------------------------
 In settings.py, add 'djaloha' to the INSTALLED_APPS 
-Under Django 1.6, the static folder should be found automatically, as the templates folder.
 In urls.py add ``(r'^djaloha/', include('djaloha.urls'))`` to your urlpatterns
 
 Then create a form. For example something like ::
