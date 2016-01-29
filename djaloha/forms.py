@@ -32,7 +32,7 @@ class DjalohaForm(forms.Form):
             initial=field_value,
             widget=AlohaInput()
         )
-        
+
     def save(self):
         """save associated object"""
         value = smart_unicode(self.cleaned_data[self._form_field])

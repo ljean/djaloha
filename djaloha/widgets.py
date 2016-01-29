@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """widgets to be used in a form"""
 
+from bs4 import BeautifulSoup
+
 from django.forms import Media
 
 from floppyforms.widgets import TextInput
@@ -67,3 +69,45 @@ class AlohaInput(TextInput):
             print '## AlohaInput._get_media Error ', msg
 
     media = property(_get_media)
+
+    def value_from_datadict(self, data, files, name):
+        """return value"""
+        value = super(AlohaInput, self).value_from_datadict(data, files, name)
+        return self.clean_value(value)
+
+    def clean_value(self, origin_value):
+        """This apply several fixes on the html"""
+        return_value = origin_value
+        if return_value:  # don't manage None values
+            callbacks = (self._fix_br, self._fix_img, )
+            for callback in callbacks:
+                return_value = callback(return_value)
+        return return_value
+
+    def _fix_br(self, content):
+        """
+        This change the <br> tag into <br />
+        in order to avoid empty lines at the end in  HTML4 for example for newsletters
+        """
+        return content.replace('<br>', '<br />')
+
+    def _fix_img(self, content):
+        """Remove the handlers generated on the image for resizing. It may be not removed by editor in some cases"""
+        soup = BeautifulSoup(content, 'html.parser')
+
+        wrapped_img = soup.select(".ui-wrapper img")
+        if len(wrapped_img) > 0:
+            img = wrapped_img[0]
+
+            # Remove the ui-resizable class
+            img_classes = img.get('class', None) or []
+            img_classes.remove('ui-resizable')
+            img['class'] = img_classes
+
+            # Replace the ui-wrapper by the img
+            wrapper = soup.select(".ui-wrapper")[0]
+            wrapper.replace_with(img)
+
+            content = unicode(soup)
+
+        return content
