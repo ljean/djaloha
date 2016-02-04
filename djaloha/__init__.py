@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """djaloha is a tool for aloha-editor integration in a django app"""
 
-VERSION = (1, 1, 2)
+VERSION = (1, 1, 3)
 
 
 def get_version():

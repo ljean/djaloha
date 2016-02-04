@@ -79,7 +79,7 @@ class AlohaInput(TextInput):
         """This apply several fixes on the html"""
         return_value = origin_value
         if return_value:  # don't manage None values
-            callbacks = (self._fix_br, self._fix_img, )
+            callbacks = (self._fix_br, self._fix_hr, self._fix_img, )
             for callback in callbacks:
                 return_value = callback(return_value)
         return return_value
@@ -90,6 +90,13 @@ class AlohaInput(TextInput):
         in order to avoid empty lines at the end in  HTML4 for example for newsletters
         """
         return content.replace('<br>', '<br />')
+
+    def _fix_hr(self, content):
+        """
+        This change the <hr> tag into <hr />
+        in order to avoid empty lines at the end in  HTML4 for example for newsletters
+        """
+        return content.replace('<hr>', '<hr />')
 
     def _fix_img(self, content):
         """Remove the handlers generated on the image for resizing. It may be not removed by editor in some cases"""
