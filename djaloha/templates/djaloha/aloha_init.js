@@ -35,12 +35,19 @@
 					'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hr'
 				],
 				attributes: {
-					'a'         : ['href', 'target'],
+					'a'         : ['href', 'target', 'style'],
 					'blockquote': ['cite'],
 					'q'         : ['cite'],
 					'p'			: ['style'],
+					'h1'			: ['style'],
+					'h2'			: ['style'],
+					'h3'			: ['style'],
+					'h4'			: ['style'],
+					'h5'			: ['style'],
+					'h6'			: ['style'],
 					'iframe'	: ['height', 'width', 'src', 'frameborder', 'allowfullscreen'],
 					'img'		: ['height', 'width', 'src', 'style']
+
 				},
 		 
 				protocols: {
