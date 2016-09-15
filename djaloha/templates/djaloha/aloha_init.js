@@ -15,11 +15,11 @@
 		sidebar: {
 			disabled: {{config.sidebar_disabled}}
 		},
-        repositories: {
-            linklist: {
-		    	data: [{% for link in links %}
-                    { name: "{{link.title|convert_crlf}}", url: '{{link.get_absolute_url}}', type: 'website', weight: 0.50 }{%if not forloop.last %},{%endif%}
-                {% endfor %}]
+		repositories: {
+			linklist: {
+			data: [{% for link in links %}
+					{ name: "{{link.title|convert_crlf}}", url: '{{link.get_absolute_url}}', type: 'website', weight: 0.50 }{%if not forloop.last %},{%endif%}
+			{% endfor %}]
 			}
 		},
 		contentHandler: {
@@ -35,21 +35,19 @@
 					'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'hr'
 				],
 				attributes: {
-					'a'         : ['href', 'target', 'style'],
+					'a': ['href', 'target', 'style'],
 					'blockquote': ['cite'],
-					'q'         : ['cite'],
-					'p'			: ['style'],
-					'h1'			: ['style'],
-					'h2'			: ['style'],
-					'h3'			: ['style'],
-					'h4'			: ['style'],
-					'h5'			: ['style'],
-					'h6'			: ['style'],
-					'iframe'	: ['height', 'width', 'src', 'frameborder', 'allowfullscreen'],
-					'img'		: ['height', 'width', 'src', 'style']
-
+					'q': ['cite'],
+					'p': ['style'],
+					'h1' : ['style'],
+					'h2' : ['style'],
+					'h3' : ['style'],
+					'h4' : ['style'],
+					'h5' : ['style'],
+					'h6' : ['style'],
+					'iframe': ['height', 'width', 'src', 'frameborder', 'allowfullscreen'],
+					'img': ['height', 'width', 'src', 'style']
 				},
-		 
 				protocols: {
 					'a'         : {'href': ['ftp', 'http', 'https', 'mailto', '__relative__', 'courrier']}, // Sanitize.RELATIVE
 					'iframe'    : {'src': ['ftp', 'http', 'https', '__relative__']}, // Sanitize.RELATIVE
@@ -65,10 +63,10 @@
 				config: [  'b', 'i', 'u', 'del', 'p', 'sub', 'sup', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'pre', 'removeFormat' ],
 				{% if config.css_classes %}
 				allowedClasses : [{% for cls in config.css_classes %}
-                    '{{ cls }}'{%if not forloop.last %},{%endif%}
-                {% endfor %}],
+					'{{ cls }}'{%if not forloop.last %},{%endif%}
+					{% endfor %}],
 				{% endif %}
-                editables: {
+        editables: {
 					// no formatting allowed for title
 					'#top-text': ['title']
 				}
@@ -177,13 +175,13 @@
 				// allow resizing the row height (default: true)
 				rowResize: true
 			},
-            image: {
-				'fixedAspectRatio' : false,
-				'maxWidth'         : 600,
-				'minWidth'         : 20,
-				'maxHeight'        : 600,
-				'minHeight'        : 20,
-				'globalselector'   : '.global',
+			image: {
+				'fixedAspectRatio': false,
+				'maxWidth': 900,
+				'minWidth': 20,
+				'maxHeight': 900,
+				'minHeight': 20,
+				'globalselector': '.global',
 				'autoResize': false,
 				'ui': {
 					'resizable' : {% if resize_disabled %}false{% else %}true{% endif %},
@@ -199,8 +197,8 @@
 					formatlessPasteOption: true, // default state of the button
 					strippedElements: [ // elements to be stripped from the pasted code
 						"span",
-                  		"font",
-                  		"style",
+						"font",
+						"style",
 						"em",
 						"strong",
 						"small",
